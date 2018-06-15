@@ -14,14 +14,7 @@ public class ProgHBBotApplication {
     public static final String TAG = "ProgHBBotApplication";
 
     public static void main(String[] args) {
+        SpringApplication.run(ProgHBBotApplication.class, args);
         BotLogger.registerLogger(new ConsoleHandler());
-
-        ApiContextInitializer.init();
-        TelegramBotsApi api = new TelegramBotsApi();
-        try {
-            api.registerBot(new ProgHBBot());
-        } catch (TelegramApiRequestException e) {
-            BotLogger.error(TAG, e.toString());
-        }
     }
 }

@@ -1,5 +1,6 @@
 package ua.kiev.prog.proghbbot.messages;
 
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -10,12 +11,14 @@ import java.util.List;
 
 import static ua.kiev.prog.proghbbot.conf.Const.*;
 
-public class StartMessage extends SendMessage {
+@Component("startMessage")
+public class StartMessage extends SendMessage implements SendingMessage {
 
-    public StartMessage(Message message) {
+    public SendMessage getSendingMessage(Message message, String language) {
         super.setChatId(message.getChatId());
         setBody();
         setText();
+        return this;
     }
 
     private void setBody() {
@@ -44,7 +47,6 @@ public class StartMessage extends SendMessage {
         this.setReplyMarkup(keyboardMarkup);
 
     }
-
 
     private void setText() {
         StringBuilder builder = new StringBuilder();

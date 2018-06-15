@@ -1,8 +1,6 @@
 package ua.kiev.prog.proghbbot.conf;
 
 public class Const {
-    public static final String BOT_NAME = "ProgHB_bot";
-    public static final String BOT_TOKEN = "619742246:AAGKfDncfGew3r9Sj4EfqNDzsbxVwst2Anw";
 
     //Commands
     public static final String START = "/start";
