@@ -5,12 +5,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
-import ua.kiev.prog.proghbbot.user.UserService;
 import ua.kiev.prog.proghbbot.util.LocaleService;
 
-
-@Component("helpMessage")
-public class HelpMessage extends SendMessage implements SendingMessage {
+@Component("responseMessage")
+public class ResponseMessage extends SendMessage implements SendingMessage {
 
     @Autowired
     MessageSource messageSource;
@@ -18,22 +16,17 @@ public class HelpMessage extends SendMessage implements SendingMessage {
     @Autowired
     LocaleService localeService;
 
-    @Autowired
-    UserService userService;
-
     @Override
     public SendMessage getSendingMessage(Message message, String language) {
 
         super.setChatId(message.getChatId());
-        String userName = userService.getUserByChatId(message.getChatId()).getFirstName();
-
-        StringBuilder builder = new StringBuilder();
-
-        builder.append(userName)
-                .append("! ")
-                .append(messageSource.getMessage("welcome", null, localeService.getLocale(language)));
-
-        super.setText(builder.toString());
+        super.setText(getResponse(message.getText(), language));
         return this;
+    }
+
+    private String getResponse(String text, String language) {
+        String apiResponse = messageSource.getMessage("notImpl", null, localeService.getLocale(language));
+        String template = messageSource.getMessage("testResponse", null, localeService.getLocale(language));
+        return String.format(template, text, apiResponse);
     }
 }

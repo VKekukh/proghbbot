@@ -10,11 +10,22 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Users {
 
     private static final String TAG = "Users";
-    private static Map<User, String> users = new ConcurrentHashMap<>();
+    private static Map<Long, ChatUser> users = new ConcurrentHashMap<>();
 
 
-    public static void addUser(User user, String language) {
+    public static void addUser(long chatId, User user, String language) {
         BotLogger.info(TAG, "Save user to static context");
-        users.put(user, language);
+        ChatUser chatUser = new ChatUser();
+        chatUser.setId(user.getId())
+                .setFirstName(user.getFirstName())
+                .setLastName(user.getLastName())
+                .setUserName(user.getUserName())
+                .setLanguageCode(language);
+
+        users.put(chatId, chatUser);
+    }
+
+    public static Map<Long, ChatUser> getUsers() {
+        return users;
     }
 }
