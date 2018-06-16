@@ -28,17 +28,17 @@ public class StartMessage extends SendMessage implements SendingMessage {
 
         InlineKeyboardButton enButton = new InlineKeyboardButton();
         enButton.setText(LANGUAGE_EN_NAME);
-        enButton.setCallbackData(LANGUAGE_EN_LOCALE);
+        enButton.setCallbackData(LANGUAGE_EN_LOCALE_COMMAND);
         row.add(enButton);
 
         InlineKeyboardButton uaButton = new InlineKeyboardButton();
         uaButton.setText(LANGUAGE_UA_NAME);
-        uaButton.setCallbackData(LANGUAGE_UA_LOCALE);
+        uaButton.setCallbackData(LANGUAGE_UA_LOCALE_COMMAND);
         row.add(uaButton);
 
         InlineKeyboardButton ruButton = new InlineKeyboardButton();
         ruButton.setText(LANGUAGE_RU_NAME);
-        ruButton.setCallbackData(LANGUAGE_RU_LOCALE);
+        ruButton.setCallbackData(LANGUAGE_RU_LOCALE_COMMAND);
         row.add(ruButton);
 
         allButtons.add(row);
